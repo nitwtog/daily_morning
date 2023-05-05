@@ -72,7 +72,7 @@ data = {"weather":{"value":wea},
         "dayOfYear":{"value":str(holiday['这一年的第几天'])+"天"},
         "solarTerms":{"value":holiday['节气']},
         }
-# print(data)
+print(data)
 res = wm.send_template(user_id, template_id, data)
-# print(res)
+print(res)
 
