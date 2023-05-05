@@ -17,12 +17,22 @@ app_secret = os.environ["APP_SECRET"]
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
+api_id = os.environ["API_ID"]
+api_secret = os.environ["API_SECRET"]
+
+
+def get_holiday():
+    url = "https://www.mxnzp.com/api/holiday/single/"+str(today.date()).replace('-','') +f"?app_id={api_id}&app_secret={api_secret}"
+    res = requests.get(url).json()
+    holiday = res['data']
+    result = {"日期":holiday['date'],"星期几": holiday['weekDay'],"天干地支":holiday['yearTips'], "节日":holiday['typeDes'], "宜":holiday['suit'], "忌":holiday['avoid'], "这一年的第几天":holiday['dayOfYear'],"节气":holiday['solarTerms']}
+    return result
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "https://www.mxnzp.com/api/weather/current/" + city + f"?app_id={api_id}&app_secret={api_secret}"
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp'])
+  weather = res['data']
+  return weather['weather'], str(weather['temp'])+"度"
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -48,6 +58,21 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+holiday = get_holiday()
+data = {"weather":{"value":wea},
+        "temperature":{"value":temperature},
+        "love_days":{"value":get_count()},
+        "birthday_left":{"value":get_birthday()},
+        "words":{"value":get_words(), "color":get_random_color()},
+        "Today":{"value":holiday['日期']},
+        "Week":{"value":holiday['星期几']},
+        "holiday":{"value":holiday['节日']},
+        "suit":{"value":holiday['宜']},
+        "avoid":{"value":holiday['忌']},
+        "dayOfYear":{"value":str(holiday['这一年的第几天'])+"天"},
+        "solarTerms":{"value":holiday['节气']},
+        }
+# print(data)
 res = wm.send_template(user_id, template_id, data)
-print(res)
+# print(res)
+
