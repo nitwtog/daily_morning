@@ -40,16 +40,23 @@ ps. 有一些注意事项在此补充
 
 
 今天是{{Today.DATA}}，星期{{Week.DATA}}，{{holiday.DATA}}
+
 二十四节气：{{solarTerms.DATA}}
+
 宜：{{suit.DATA}}； 忌：{{avoid.DATA}}
+
 今年已经过去了{{dayOfYear.DATA}}
 
 今日份上海：
+
 天气：{{weather.DATA}} ；温度：{{temperature.DATA}} 。
+
 要根据天气选择合适的穿衣打扮捏~ 
 
 今天是想你的第{{love_days.DATA}}天
+
 距离你的生日还有{{birthday_left.DATA}}天
 
 我想说的是：{{words.DATA}}
+
 今天也要开开心心！
