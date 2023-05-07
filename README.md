@@ -37,6 +37,8 @@ ps. 有一些注意事项在此补充
 5. 重新修正了天气和日历的api接口 需要去注册，微信搜索“电点科技”获取apikey
 6. 根据5，因此需要传入新的apikey，所以要在环境变量中添加API_ID，API_SECRET
 7. 新的模版如下
+
+
 今天是{{Today.DATA}}，星期{{Week.DATA}}，{{holiday.DATA}}
 二十四节气：{{solarTerms.DATA}}
 宜：{{suit.DATA}}； 忌：{{avoid.DATA}}
