@@ -15,7 +15,7 @@ user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 tianqi_id = os.environ["TIANQI_ID"]
 tianqi_secret = os.environ["TIANQI_SECRET"]
-rili_key = os.environ["RILI_key"]
+rili_key = os.environ["RILI_KEY"]
 # news_key = os.environ["news_key"]
 
 def get_holiday():
