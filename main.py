@@ -16,7 +16,7 @@ template_id = os.environ["TEMPLATE_ID"]
 tianqi_id = os.environ["tianqi_ID"]
 tianqi_secret = os.environ["tianqi_SECRET"]
 rili_key = os.environ["rili_key"]
-news_key = os.environ["news_key"]
+# news_key = os.environ["news_key"]
 
 def get_holiday():
     # date ='-'.join(str(int(i)) for i in str(today.date()).split('-'))
@@ -40,15 +40,15 @@ def get_count():
     delta = today - datetime.strptime(start_date, "%Y-%m-%d")
     return delta.days
 
-def get_news():
-    type = 'caijing'
-    page = "1"
-    page_size = "10"
+# def get_news():
+#     type = 'caijing'
+#     page = "1"
+#     page_size = "10"
 
-    url = f"http://v.juhe.cn/toutiao/index?key={news_key}&type={type}&page={page}&page_size={page_size}"
-    head = {'Content-Type': 'application/x-www-form-urlencoded'}
-    res = requests.get(url, headers=head).json()
-    return res['result']
+#     url = f"http://v.juhe.cn/toutiao/index?key={news_key}&type={type}&page={page}&page_size={page_size}"
+#     head = {'Content-Type': 'application/x-www-form-urlencoded'}
+#     res = requests.get(url, headers=head).json()
+#     return res['result']
 def get_birthday():
     next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
     if next < datetime.now():
@@ -85,7 +85,7 @@ data = {"now_temp": {"value": weather['tem']},  # 当前天气
         "suit": {"value": holiday['suit']},
         "avoid": {"value": holiday['avoid']},
         "statusDesc": {'value': holiday['statusDesc']},
-        "news":{"value":" \n".join([f"{k+1}. "+i['title'] for k,i in enumerate(news["data"])])}
+#         "news":{"value":" \n".join([f"{k+1}. "+i['title'] for k,i in enumerate(news["data"])])}
         }
 print(data)
 
