@@ -29,7 +29,6 @@ jobs:
       USER_ID: ${{ secrets.USER_ID }}
       START_DATE: ${{ secrets.START_DATE }}
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
-      tianqi_ID: ${{ secrets.tianqi_ID }}
-      tianqi_SECRET: ${{ secrets.tianqi_SECRET }}
-      rili_key: ${{ scretes.rili_key}}
-      news_key: ${{news_key}}
+      TIANQI_ID: ${{ secrets.TIANQI_ID }}
+      TIANQI_SECRET: ${{ secrets.TIANQI_SECRET }}
+      RILI_KEY: ${{ secrets.RILI_KEY}}
