@@ -69,6 +69,8 @@ def get_random_color():
 
 weather = get_weather()
 holiday = get_holiday()
+if "value" not in holiday:
+    holiday['value'] = "无"
 # news = get_news()
 data = {"now_temp": {"value": weather['tem']},  # 当前天气
         "max_temp": {"value": weather['tem1']},
