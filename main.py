@@ -20,7 +20,8 @@ tianqi_id = os.environ["TIANQI_ID"]
 tianqi_secret = os.environ["TIANQI_SECRET"]
 rili_key = os.environ["RILI_KEY"]
 # news_key = os.environ["news_key"]
-
+test11 = os.environ["TEST"]
+print(test11)
 wenxin_key = os.environ["WENXIN_KEY"]
 wenxin_secret = os.environ["WENXIN_SECRET"]
 
