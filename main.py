@@ -136,6 +136,7 @@ def main(weather, data_info):
 
 
 weather = get_weather()
+del  weather['air_tips']
 holiday = get_holiday()
 if "value" not in holiday:
     holiday['value'] = "无"
@@ -144,7 +145,7 @@ data = {"now_temp": {"value": weather['tem']},  # 当前天气
         "max_temp": {"value": weather['tem1']},
         "min_temp": {"value": weather['tem2']},
         "weather": {"value": weather['wea']},
-        "air_tips": {"value": weather['air_tips']},
+        # "air_tips": {"value": weather['air_tips']},
         "air_level": {"value": weather['air_level']},
         "love_days": {"value": get_count()},
         "birthday_left": {"value": get_birthday()},
