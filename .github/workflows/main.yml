@@ -32,3 +32,5 @@ jobs:
       TIANQI_ID: ${{ secrets.TIANQI_ID }}
       TIANQI_SECRET: ${{ secrets.TIANQI_SECRET }}
       RILI_KEY: ${{ secrets.RILI_KEY}}
+      WENXIN_KEY: ${{ secrets.WENXIN_KEY}}
+      WENXIN_SECRET: ${{ secrets.WENXIN_SECRET}}
