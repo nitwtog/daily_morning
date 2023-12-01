@@ -174,7 +174,7 @@ for k,i in enumerate(new_words):
 
 
 print(print_word)
-# client = WeChatClient(app_id, app_secret)
-# wm = WeChatMessage(client)
-# res = wm.send_template(user_id, template_id, wenxin_data)
-# print(res)
+client = WeChatClient(app_id, app_secret)
+wm = WeChatMessage(client)
+res = wm.send_template(user_id, template_id, wenxin_data)
+print(res)
