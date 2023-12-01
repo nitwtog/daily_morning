@@ -167,7 +167,7 @@ data = {"now_temp": {"value": weather['tem']},  # 当前天气
 print(data)
 
 wenxin_response = json.loads(main(weather, data))
-wenxin_data = {'wenxin_results':{"value": wenxin_response.result}}
+wenxin_data = {'wenxin_results':{"value": wenxin_response['result']}}
 
 print(wenxin_data)
 client = WeChatClient(app_id, app_secret)
