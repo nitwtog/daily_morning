@@ -21,8 +21,8 @@ tianqi_secret = os.environ["TIANQI_SECRET"]
 rili_key = os.environ["RILI_KEY"]
 # news_key = os.environ["news_key"]
 
-wenxin_key = os.environ["wenxin_KEY"]
-wenxin_secret = os.environ["wenxin_SECRET"]
+wenxin_key = os.environ["WENXIN_KEY"]
+wenxin_secret = os.environ["WENXIN_SECRET"]
 
 def get_holiday():
     # date ='-'.join(str(int(i)) for i in str(today.date()).split('-'))
@@ -80,7 +80,7 @@ def get_access_token():
     使用 API Key，Secret Key 获取access_token，替换下列示例中的应用API Key、应用Secret Key
     """
         
-    url = f"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={API_KEY}&client_secret={SECRET_KEY}"
+    url = f"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={wenxin_key}&client_secret={wenxin_secret}"
     
     payload = json.dumps("")
     headers = {
