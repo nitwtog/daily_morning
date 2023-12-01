@@ -98,13 +98,13 @@ def main(weather, data_info):
             {
                 "role": "user",
                 "content": f"""       
-现在你要给你的女朋友写一份每日早安，你现在有一个可以参考的很粗糙的模板，如下：
+现在你要给你的喜欢的人写一份每日早安，你现在有一个可以参考的很粗糙的模板，如下：
 
 “今天是{{Today.DATA}}，星期{{Week.DATA}}
 
 {{holiday.DATA}}，节气：{{solarTerms.DATA}}
 
-宜：{{ 请注意找出与学习、生活、出行、工作相关的5-6个词语 }}
+宜：{{ 根据给出信息与学习、生活、出行、工作相关的3个词语 }}
 
 今年过去{{dayOfYear.DATA}}天，距离你生日还有{{birthday_left.DATA}}天
 
@@ -116,11 +116,11 @@ def main(weather, data_info):
 
 我想说的是：{{words.DATA}}
 ”
-现在你要给你的女朋友写一份每日早安,以下是今天的上海天气情况：
+以下是今天的上海天气情况：
 {weather}
     我将一些关键的信息抽取了出来，这些东西是要重点进行描述的
 {data_info}
-但是你的女朋友觉得你这个模板每天都一样太过于单调了，请对于air_tips.value， 以及 words.value进行改写修正。比如针对天气情况给出更多建议，并且不要使用刻板相同的表达方式，你的女朋友希望每天都能看到一些更有意思的早安。请注意，不要输出其他内容，不要重复问题，直接生成早安内容，不要过多回复。注意，女朋友想要模板之外的更多表达，请不要完全按照粗糙的模板填充内容，给出创意性质生成！注意，不要太肉麻，宜和忌部分适当选用3-5个词，与给出信息相符即可"""
+但是你觉得你这个模板每天都一样太过于单调了，请对于air_tips.value， 以及 words.value进行改写修正。比如针对天气情况给出更多建议，并且不要使用刻板相同的表达方式，希望每天都能看到一些更有意思的早安。请注意，不要输出其他内容，不要复述问题，直接生成早安内容，不要过多回复。注意不要太肉麻，宜和忌部分结合给出信息适当选用3个词，与给出信息相符即可"""
             }
         ]
     })
@@ -152,8 +152,8 @@ data = {"now_temp": {"value": weather['tem']},  # 当前天气
         "Today": {"value": holiday['date']},
         "Week": {"value": holiday['week']},
         "holiday": {"value": holiday['value']},
-        "suit": {"value": holiday['suit']},
-        "avoid": {"value": holiday['avoid']},
+        "宜": {"value": holiday['suit']},
+        "忌": {"value": holiday['avoid']},
         "statusDesc": {'value': holiday['statusDesc']},
 #         "news":{"value":" \n".join([f"{k+1}. "+i['title'] for k,i in enumerate(news["data"])])}
         }
@@ -176,5 +176,5 @@ for k,i in enumerate(new_words):
 print(print_word)
 client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
-res = wm.send_template(user_id, template_id, wenxin_data)
+res = wm.send_template(user_id, template_id, print_word)
 print(res)
