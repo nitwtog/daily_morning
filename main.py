@@ -108,7 +108,7 @@ def main(weather, data_info):
 
 今年过去{{dayOfYear.DATA}}天，距离你生日还有{{birthday_left.DATA}}天
 
-天气：{{weather.DATA}} ；最高：{} 最低{} 
+天气：{{weather.DATA}} ；最高：{{tmp.max}} 最低{{tmp.min}} 
 
 {{对天气信息的描述，给出天气的相关建议}}#简单描述
 
