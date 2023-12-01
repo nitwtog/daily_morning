@@ -5,6 +5,9 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+import requests
+import json
+
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
@@ -17,6 +20,9 @@ tianqi_id = os.environ["TIANQI_ID"]
 tianqi_secret = os.environ["TIANQI_SECRET"]
 rili_key = os.environ["RILI_KEY"]
 # news_key = os.environ["news_key"]
+
+wenxin_key = os.environ["wenxin_KEY"]
+wenxin_secret = os.environ["wenxin_SECRET"]
 
 def get_holiday():
     # date ='-'.join(str(int(i)) for i in str(today.date()).split('-'))
@@ -68,6 +74,75 @@ def get_random_color():
     return "#%06x" % random.randint(0, 0xFFFFFF)
 
 
+
+def get_access_token():
+    """
+    使用 API Key，Secret Key 获取access_token，替换下列示例中的应用API Key、应用Secret Key
+    """
+        
+    url = f"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={API_KEY}&client_secret={SECRET_KEY}"
+    
+    payload = json.dumps("")
+    headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+    
+    response = requests.request("POST", url, headers=headers, data=payload)
+    return response.json().get("access_token")
+
+def main(weather, data_info):
+    url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions_pro?access_token=" + get_access_token()
+    
+    payload = json.dumps({
+        "messages": [
+            {
+                "role": "user",
+                "content": f"""       
+现在你要给你的女朋友写一份每日早安，你现在有一个可以参考的很粗糙的模板，如下：
+“今天是{{Today.DATA}}，星期{{Week.DATA}}，{{holiday.DATA}}（如果是工作日提醒她不要太辛苦，如果是节假日鼓励她休息放松）
+
+二十四节气：{{solarTerms.DATA}}
+
+宜：{{suit.DATA}}； 忌：{{avoid.DATA}}
+
+今年已经过去了{{dayOfYear.DATA}}
+
+今日份上海：
+
+天气：{{weather.DATA}} ；温度：{{temperature.DATA}} 。
+
+{{对天气信息的描述，给出天气的相关建议}}
+{{给出可能的穿衣建议，注意结合温度}}
+
+今天是想你的第{{love_days.DATA}}天
+
+距离你的生日还有{{birthday_left.DATA}}天
+
+我想说的是：{{words.DATA}}
+
+今天也要开开心心！”
+                
+现在你要给你的女朋友写一份每日早安,以下是今天的上海天气情况：
+{weather}
+我将一些关键的信息抽取了出来，这些东西是要重点进行描述的
+{data_info}
+
+但是你的女朋友觉得你这个模板每天都一样太过于单调了，请对于air_tips.value， 以及 words.value进行改写修正。比如针对天气情况给出更多建议，并且不要使用刻板相同的表达方式，你的女朋友希望每天都能看到一些更有意思的早安。请注意，不要输出其他内容，不要重复问题，直接生成早安内容，不要过多回复。注意，女朋友想要模板之外的更多表达，请不要完全按照粗糙的模板填充内容，给出创意性质生成！注意，不要太肉麻，要有趣"""
+            }
+        ]
+    })
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    
+    response = requests.request("POST", url, headers=headers, data=payload)
+    
+    print(response.text)
+    return response.text
+
+
+
 weather = get_weather()
 holiday = get_holiday()
 if "value" not in holiday:
@@ -92,6 +167,10 @@ data = {"now_temp": {"value": weather['tem']},  # 当前天气
         }
 print(data)
 
+wenxin_response = main(weather, data)
+wenxin_data = {'wenxin_results':{"value": wenxin_response.results}}
+
+print(wenxin_data)
 client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 res = wm.send_template(user_id, template_id, data)
