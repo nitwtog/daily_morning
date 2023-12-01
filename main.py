@@ -37,6 +37,7 @@ def get_weather():
     }
     # update data 2023年12月2日 由于接口被攻击，运营商更换http协议
     url = f"http://v0.yiketianqi.com/api?appid={tianqi_id}&appsecret={tianqi_secret}&version=v61&city=%E4%B8%8A%E6%B5%B7&province=%E4%B8%8A%E6%B5%B7"
+    url = 'http://v1.yiketianqi.com/api?unescape=1&version=v9&appid=37428855&appsecret=4stplA60&version=v61&city=%E4%B8%8A%E6%B5%B7&province=%E4%B8%8A%E6%B5%B7'
     res = requests.get(url, headers=headers)
     result = json.loads(res.content)
     return result
