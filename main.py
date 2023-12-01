@@ -104,7 +104,7 @@ def main(weather, data_info):
 
 {{holiday.DATA}}，节气：{{solarTerms.DATA}}
 
-宜：{ 请注意找出与学习、生活、出行、工作相关的5-6个词语 }
+宜：{{ 请注意找出与学习、生活、出行、工作相关的5-6个词语 }}
 
 今年过去{{dayOfYear.DATA}}天，距离你生日还有{{birthday_left.DATA}}天
 
@@ -117,10 +117,9 @@ def main(weather, data_info):
 我想说的是：{{words.DATA}}
 ”
 现在你要给你的女朋友写一份每日早安,以下是今天的上海天气情况：
-{"cityid":"101020100","date":"2023-12-02","week":"星期六","update_time":"01:45","city":"上海","cityEn":"shanghai","country":"中国","countryEn":"China","wea":"晴","wea_img":"qing","tem":"5.8","tem1":"9","tem2":"3","win":"北风","win_speed":"0级","win_meter":"0km\/h","humidity":"40%","visibility":"23km","pressure":"1030","air":"48","air_pm25":"31","air_level":"优","air_tips":"各类人群可多参加户外活动，多呼吸一下清新的空气。","alarm":{"alarm_type":"","alarm_level":"","alarm_title":"","alarm_content":""},"rain_pcpn":"0","uvIndex":"1","uvDescription":"低","wea_day":"晴","wea_day_img":"qing","wea_night":"阴","wea_night_img":"yin","sunrise":"06:34","sunset":"16:51","aqi":{"update_time":"01:39","air":"48","air_level":"优","air_tips":"各类人群可多参加户外活动，多呼吸一下清新的空气。","pm25":"31","pm25_desc":"优","pm10":"48","pm10_desc":"优","o3":"47","o3_desc":"","no2":"34","no2_desc":"","so2":"12","so2_desc":"","co":"0.8","co_desc":"","kouzhao":"不用佩戴口罩","yundong":"适宜运动","waichu":"适宜外出","kaichuang":"适宜开窗","jinghuaqi":"不需要打开"}}
-我将一些关键的信息抽取了出来，这些东西是要重点进行描述的
-{'now_temp': {'value': '11.8'}, 'max_temp': {'value': '16'}, 'min_temp': {'value': '11'}, 'weather': {'value': '晴'}, 'air_tips': {'value': '各类人群可多参加户外活动，多呼吸一下清新的空气。'}, 'air_level': {'value': '良'}, 'love_days': {'value': 329}, 'birthday_left': {'value': 28}, 'words': {'value': '一直觉得一个人生活，直到遇见你，我想和你生个孩子……', 'color': '#aedc76'}, 'Today': {'value': '2023-11-26'}, 'Week': {'value': '星期日'}, 'holiday': {'value': '无'}, 'suit': {'value': '结婚.出行.打扫.搬家.搬新房.动土.栽种.纳畜.安葬.修造.拆卸.成服.出火.除服.收养子女.掘井.开光'}, 'avoid': {'value': '买房.安床'}, 'statusDesc': {'value': '周末'}}
-
+{weather}
+    我将一些关键的信息抽取了出来，这些东西是要重点进行描述的
+{data_info}
 但是你的女朋友觉得你这个模板每天都一样太过于单调了，请对于air_tips.value， 以及 words.value进行改写修正。比如针对天气情况给出更多建议，并且不要使用刻板相同的表达方式，你的女朋友希望每天都能看到一些更有意思的早安。请注意，不要输出其他内容，不要重复问题，直接生成早安内容，不要过多回复。注意，女朋友想要模板之外的更多表达，请不要完全按照粗糙的模板填充内容，给出创意性质生成！注意，不要太肉麻，宜和忌部分适当选用3-5个词，与给出信息相符即可"""
             }
         ]
